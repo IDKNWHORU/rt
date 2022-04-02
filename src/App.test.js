@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { act, cleanup, render, screen } from '@testing-library/react';
 import App, { Login } from './App';
 
 test('renders react app', () => {
@@ -8,9 +8,18 @@ test('renders react app', () => {
 });
 
 test('renders Login Page', () => {
-  render(<Login />);
+
+  act(() => {
+    render(<Login />);
+  })
 
   expect(screen.getByText('id')).toBeInTheDocument();
   expect(screen.getByText('password')).toBeInTheDocument();
   expect(screen.getByText('Login')).toBeInTheDocument();
+
+  act(() => {
+    render(<Login saveInfo={true} />);
+  });
+
+  expect(screen.getByText('admin')).toBeInTheDocument();
 })

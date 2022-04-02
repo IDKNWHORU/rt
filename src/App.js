@@ -10,7 +10,15 @@ function App() {
     ;
 }
 
-function Login() {
+function Login({ saveInfo }) {
+  const autoLoadUserInfo = (saveInfo) => {
+    if (saveInfo === true) {
+      return <span>admin</span>
+    } else {
+      return null;
+    }
+  }
+
   return (
     <>
       <span>
@@ -22,6 +30,7 @@ function Login() {
       <span>
         Login
       </span>
+      {autoLoadUserInfo(saveInfo)}
     </>
   )
 }
